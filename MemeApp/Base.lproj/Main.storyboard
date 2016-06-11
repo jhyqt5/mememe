@@ -109,6 +109,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="ZP2-qE-0Yn" id="61x-0W-gdh"/>
+                        <outlet property="camera" destination="KzH-oK-ogW" id="Vac-Se-DtG"/>
                         <outlet property="completeView" destination="8bC-Xf-vdC" id="Hqh-dw-mrt"/>
                         <outlet property="memeView" destination="FgN-MG-bVa" id="ddK-Gm-2Kq"/>
                         <outlet property="memedImageView" destination="Bve-Dh-Tsz" id="qRR-OD-BAo"/>

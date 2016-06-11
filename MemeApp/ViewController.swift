@@ -12,6 +12,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
+    @IBOutlet weak var camera: UIBarButtonItem!
     @IBOutlet weak var memedImageView: UIView!
     @IBOutlet var completeView: UIView!
     @IBOutlet weak var topTextField: UITextField!
@@ -127,6 +128,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        camera.enabled = false
         picker.delegate = self
         topTextField.delegate = self
         bottomTextField.delegate = self

@@ -10,6 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    let attributes = [
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "Futura-CondensedExtraBold", size: 30)!
+    ]
+    
     @IBOutlet var completeView: UIView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -31,6 +36,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(picker, animated: true, completion: nil)
     }
     
+    @IBAction func clearMeme(sender: AnyObject) {
+        dismissKeyboard()
+        
+        topTextField.text = nil
+        bottomTextField.text = nil
+        topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:attributes)
+        bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
+
+        memeView.image = nil    
+    }
     
     func setFont() {
         let attributes = [
@@ -54,9 +69,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             field.layer.shadowColor = UIColor.blackColor().CGColor
             field.layer.shadowOffset = CGSizeMake(1.0, -1.0)
         }
-        
-        
-
     }
     
     func dismissKeyboard () {
@@ -122,9 +134,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField.tag == 0 {
-            topTextField.placeholder = nil
+            topTextField.placeholder = ""
         } else if textField.tag == 1 {
-            bottomTextField.placeholder = nil
+            bottomTextField.placeholder = ""
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         }
     }

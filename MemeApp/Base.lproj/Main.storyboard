@@ -41,7 +41,11 @@
                                 <items>
                                     <barButtonItem systemItem="action" id="i47-vy-CfR"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="c8M-3C-F4q"/>
-                                    <barButtonItem title="Cancel" id="sOd-ir-XNI"/>
+                                    <barButtonItem title="Cancel" id="sOd-ir-XNI">
+                                        <connections>
+                                            <action selector="clearMeme:" destination="BYZ-38-t0r" id="1aP-iN-lnd"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bve-Dh-Tsz">

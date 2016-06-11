@@ -128,7 +128,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        camera.enabled = false
+        
+        #if arch(i386) || arch(x86_64)
+            camera.enabled = false
+        #endif
+            
+        
         picker.delegate = self
         topTextField.delegate = self
         bottomTextField.delegate = self

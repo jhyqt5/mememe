@@ -81,26 +81,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //setting the font attributes
     func setFont() {
-        let attributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Futura-CondensedExtraBold", size: 30)!
-        ]
-        
+        //setting font and size
         topTextField.font = UIFont(name: "Futura-CondensedExtraBold", size: 30)!
         bottomTextField.font = UIFont(name: "Futura-CondensedExtraBold", size: 30)!
         
+        //placeholder fonts and attributes
         topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:attributes)
         bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
         
         
-        //Adding shadow to font
+        //Adding shadow/outline to font
         let txtFields = [topTextField, bottomTextField]
         
         for field in txtFields {
             field.layer.shadowOpacity = 1.0
             field.layer.shadowRadius = 1.0
             field.layer.shadowColor = UIColor.blackColor().CGColor
-            field.layer.shadowOffset = CGSizeMake(1.0, -1.0)
+            field.layer.shadowOffset = CGSizeMake(2.0, -2.0)
         }
     }
     

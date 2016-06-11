@@ -20,6 +20,9 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltt-np-CiR">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="E14-JV-2Bo"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2DR-Lg-hRV"/>
                                     <barButtonItem systemItem="camera" id="KzH-oK-ogW">
@@ -38,6 +41,9 @@
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZkU-Yk-5QW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="aXT-VI-YO4"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="action" id="i47-vy-CfR">
                                         <connections>

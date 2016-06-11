@@ -39,7 +39,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZkU-Yk-5QW">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="i47-vy-CfR"/>
+                                    <barButtonItem systemItem="action" id="i47-vy-CfR">
+                                        <connections>
+                                            <action selector="saveShare:" destination="BYZ-38-t0r" id="v61-KK-fNf"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="c8M-3C-F4q"/>
                                     <barButtonItem title="Cancel" id="sOd-ir-XNI">
                                         <connections>
@@ -101,6 +105,7 @@
                         <outlet property="bottomTextField" destination="ZP2-qE-0Yn" id="61x-0W-gdh"/>
                         <outlet property="completeView" destination="8bC-Xf-vdC" id="Hqh-dw-mrt"/>
                         <outlet property="memeView" destination="FgN-MG-bVa" id="ddK-Gm-2Kq"/>
+                        <outlet property="memedImageView" destination="Bve-Dh-Tsz" id="qRR-OD-BAo"/>
                         <outlet property="topTextField" destination="dHj-38-8kt" id="9w4-ks-fCB"/>
                     </connections>
                 </viewController>

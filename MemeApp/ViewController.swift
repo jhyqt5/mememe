@@ -10,24 +10,30 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    let attributes = [
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "Futura-CondensedExtraBold", size: 30)!
-    ]
     
+    
+    @IBOutlet weak var memedImageView: UIView!
     @IBOutlet var completeView: UIView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var memeView: UIImageView!
     
-    let picker = UIImagePickerController()
     
+    let picker = UIImagePickerController()
+    var activityViewController: UIActivityViewController?
+    let attributes = [
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "Futura-CondensedExtraBold", size: 30)!
+    ]
+    
+    //Open Photo Library
     @IBAction func getAlbum(sender: UIBarButtonItem) {
         picker.allowsEditing = false
         picker.sourceType = .PhotoLibrary
         presentViewController(picker, animated: true, completion: nil)
     }
     
+    //Open Camera (does not work with simulator)
     @IBAction func getCamera(sender: UIBarButtonItem) {
         picker.allowsEditing = false
         picker.sourceType = UIImagePickerControllerSourceType.Camera
@@ -36,17 +42,44 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(picker, animated: true, completion: nil)
     }
     
+    
+    //Cancel and clear image and text
     @IBAction func clearMeme(sender: AnyObject) {
+        //if keyboard is shown, hide it.
         dismissKeyboard()
         
+        //Clear text and replace placeholder and clear image
         topTextField.text = nil
         bottomTextField.text = nil
         topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:attributes)
         bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
-
-        memeView.image = nil    
+        memeView.image = nil
     }
     
+    //Generate, save, and share meme
+    @IBAction func saveShare(sender: AnyObject) {
+        //save image
+        let generatedMemeImage = generateMemedImage()
+        let meme = Meme(topText: topTextField.text!, botText: bottomTextField.text!, image: memeView.image!, memedImage: generatedMemeImage)
+        
+        
+        // share image
+        let activityViewController = UIActivityViewController( activityItems: [meme.memedImage as UIImage], applicationActivities: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
+    //generate the meme
+    func generateMemedImage() -> UIImage {
+        UIGraphicsBeginImageContext(completeView.frame.size)
+        memedImageView.drawViewHierarchyInRect(memedImageView.frame,
+                                     afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return memedImage
+    }
+    
+    //setting the font attributes
     func setFont() {
         let attributes = [
             NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -154,4 +187,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
 } //End View Controller
+
+
+struct Meme {
+    let topText: String
+    let botText: String
+    let image: UIImage
+    let memedImage: UIImage
+}
 

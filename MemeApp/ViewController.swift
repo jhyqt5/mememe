@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet var completeView: UIView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var memeView: UIImageView!
@@ -42,10 +43,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:attributes)
         bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
+        
+        
+        //Adding shadow to font
+        let txtFields = [topTextField, bottomTextField]
+        
+        for field in txtFields {
+            field.layer.shadowOpacity = 1.0
+            field.layer.shadowRadius = 1.0
+            field.layer.shadowColor = UIColor.blackColor().CGColor
+            field.layer.shadowOffset = CGSizeMake(1.0, -1.0)
+        }
+        
+        
+
     }
     
     func dismissKeyboard () {
         view.endEditing(true)
+        keyboardDisappears ()
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        completeView.frame.origin.y = completeView.frame.origin.y - getKeyboardHeight(notification)
+    }
+    
+    func keyboardDisappears () {
+        completeView.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -65,6 +95,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setFont()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+    }
+
+    
     //MARK: Delegates
     func imagePickerController( picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -82,15 +125,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             topTextField.placeholder = nil
         } else if textField.tag == 1 {
             bottomTextField.placeholder = nil
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-
+        if textField.tag == 1 {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        keyboardDisappears()
         return true
     }
     

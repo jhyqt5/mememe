@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var memeView: UIImageView!
     let picker = UIImagePickerController()
     
@@ -27,6 +29,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(picker, animated: true, completion: nil)
     }
     
+    
+    func setFont() {
+        let attributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Futura-CondensedExtraBold", size: 30)!
+        ]
+        
+        topTextField.font = UIFont(name: "Futura-CondensedExtraBold", size: 30)!
+        bottomTextField.font = UIFont(name: "Futura-CondensedExtraBold", size: 30)!
+        
+        topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:attributes)
+        bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
+    }
+    
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
@@ -35,6 +52,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        
+        setFont()
     }
     
     //MARK: Delegates

@@ -47,29 +47,29 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bve-Dh-Tsz">
                                 <rect key="frame" x="0.0" y="44" width="320" height="392"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dHj-38-8kt">
-                                        <rect key="frame" x="8" y="34" width="304" height="30"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="yes"/>
-                                    </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FgN-MG-bVa">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="392"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZP2-qE-0Yn">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dHj-38-8kt">
+                                        <rect key="frame" x="8" y="34" width="304" height="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="yes"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZP2-qE-0Yn">
                                         <rect key="frame" x="8" y="330" width="304" height="30"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="yes"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ZP2-qE-0Yn" secondAttribute="bottom" constant="50" id="1Y0-8i-OpS"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZP2-qE-0Yn" secondAttribute="bottom" constant="25" id="1Y0-8i-OpS"/>
                                     <constraint firstItem="dHj-38-8kt" firstAttribute="leading" secondItem="Bve-Dh-Tsz" secondAttribute="leading" constant="8" id="2XT-1U-aMd"/>
                                     <constraint firstItem="FgN-MG-bVa" firstAttribute="leading" secondItem="Bve-Dh-Tsz" secondAttribute="leading" id="9ip-u8-iOT"/>
                                     <constraint firstAttribute="trailing" secondItem="ZP2-qE-0Yn" secondAttribute="trailing" constant="8" id="FbP-4B-E64"/>
-                                    <constraint firstItem="dHj-38-8kt" firstAttribute="top" secondItem="Bve-Dh-Tsz" secondAttribute="top" constant="50" id="ZeY-dK-uer"/>
+                                    <constraint firstItem="dHj-38-8kt" firstAttribute="top" secondItem="Bve-Dh-Tsz" secondAttribute="top" constant="25" id="ZeY-dK-uer"/>
                                     <constraint firstItem="FgN-MG-bVa" firstAttribute="top" secondItem="Bve-Dh-Tsz" secondAttribute="top" id="Zpd-ag-sPK"/>
                                     <constraint firstAttribute="trailing" secondItem="FgN-MG-bVa" secondAttribute="trailing" id="eQZ-w1-fIj"/>
                                     <constraint firstAttribute="bottom" secondItem="FgN-MG-bVa" secondAttribute="bottom" id="qoJ-Nt-bwl"/>
@@ -94,7 +94,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="bottomTextField" destination="ZP2-qE-0Yn" id="61x-0W-gdh"/>
                         <outlet property="memeView" destination="FgN-MG-bVa" id="ddK-Gm-2Kq"/>
+                        <outlet property="topTextField" destination="dHj-38-8kt" id="9w4-ks-fCB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

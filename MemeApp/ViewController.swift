@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var memeView: UIImageView!
+    
     let picker = UIImagePickerController()
     
     @IBAction func getAlbum(sender: UIBarButtonItem) {
@@ -43,6 +44,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
     }
     
+    func dismissKeyboard () {
+        view.endEditing(true)
+    }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -52,6 +56,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
+        topTextField.delegate = self
+        bottomTextField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
         setFont()
     }
@@ -66,6 +75,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField.tag == 0 {
+            topTextField.placeholder = nil
+        } else if textField.tag == 1 {
+            bottomTextField.placeholder = nil
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 } //End View Controller

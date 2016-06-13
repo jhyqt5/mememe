@@ -14,6 +14,7 @@ class MemeTableViewController: UIViewController, UITableViewDelegate {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    @IBOutlet weak var memeTable: UITableView!
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -34,5 +35,17 @@ class MemeTableViewController: UIViewController, UITableViewDelegate {
 
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        memeTable.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        memeTable.reloadData()
     }
 }

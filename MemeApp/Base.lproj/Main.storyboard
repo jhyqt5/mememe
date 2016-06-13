@@ -66,10 +66,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="RgK-g8-pR2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzg-Xm-w7t"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzg-Xm-w7t">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="k1A-yo-yLj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="flowLayout" destination="qv0-4E-X56" id="Prd-V3-xfj"/>
+                        <outlet property="memeCollection" destination="bDo-H2-d6s" id="Fu1-aA-1Op"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHO-IW-kcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,8 +122,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="55h-P5-2Dl">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="pT3-nj-Uav"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4cv-7n-yho"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4cv-7n-yho">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="Kiv-DH-8E7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="memeTable" destination="Csb-eB-BSw" id="iKT-el-v8h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22A-wb-PTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -244,6 +256,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ac0-z6-kaq"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="ZP2-qE-0Yn" id="61x-0W-gdh"/>
@@ -262,7 +275,7 @@
         <scene sceneID="qyb-53-rWP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FlU-eU-P3h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="BxU-fr-uXS"/>
+                    <tabBarItem key="tabBarItem" title="" image="table" id="BxU-fr-uXS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fIf-WB-KV9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -277,11 +290,11 @@
             </objects>
             <point key="canvasLocation" x="-111" y="-102"/>
         </scene>
-        <!--Item 2-->
+        <!--Navigation Controller-->
         <scene sceneID="VQ0-NT-AJm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nMX-aP-FuC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="vtS-vg-uLx"/>
+                    <tabBarItem key="tabBarItem" title="" image="grid" id="vtS-vg-uLx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1SI-n6-MY8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -297,4 +310,11 @@
             <point key="canvasLocation" x="-111" y="544"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="grid" width="35" height="35"/>
+        <image name="table" width="35" height="29"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="k1A-yo-yLj"/>
+    </inferredMetricsTieBreakers>
 </document>

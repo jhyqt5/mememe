@@ -10,6 +10,7 @@ import UIKit
 
 class MemeCollectionViewController: UIViewController, UICollectionViewDelegate {
     
+    @IBOutlet weak var memeCollection: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     var memes: [Meme] {
@@ -32,10 +33,27 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate {
         
         return cell
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let space: CGFloat = 3.0
+        let dimension = (self.view.frame.size.width - (2 * space)) / 3.0
+        
+        flowLayout.minimumLineSpacing = space
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+    }
 
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        memeCollection.reloadData()
     }
 
 }

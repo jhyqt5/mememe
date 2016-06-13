@@ -17,6 +17,8 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    var selectedMeme: Meme?
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -32,6 +34,20 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDelegate {
         cell.memeImage?.image = memes[indexPath.row].memedImage
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        selectedMeme = memes[indexPath.row]
+        performSegueWithIdentifier("showCollectionDetail", sender: self)
+        
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showCollectionDetail" {
+            let vc = segue.destinationViewController as! DetailedTableMemeViewController
+            vc.meme = selectedMeme
+        }
     }
     
     override func viewDidLoad() {

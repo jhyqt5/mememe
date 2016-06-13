@@ -14,6 +14,8 @@ class MemeTableViewController: UIViewController, UITableViewDelegate {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    var selectedMeme: Meme?
+    
     @IBOutlet weak var memeTable: UITableView!
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -33,6 +35,17 @@ class MemeTableViewController: UIViewController, UITableViewDelegate {
         return cell
     } // end function
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedMeme = memes[indexPath.row]
+        performSegueWithIdentifier("showTableDetail", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTableDetail" {
+            let vc = segue.destinationViewController as! DetailedTableMemeViewController
+            vc.meme = selectedMeme
+        }
+    }
 
     override func prefersStatusBarHidden() -> Bool {
         return true

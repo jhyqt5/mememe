@@ -63,15 +63,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let generatedMemeImage = generateMemedImage()
         let meme = Meme(topText: topTextField.text!, botText: bottomTextField.text!, image: memeView.image!, memedImage: generatedMemeImage)
         
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
         
         // share image
         let activityViewController = UIActivityViewController( activityItems: [meme.memedImage as UIImage], applicationActivities: nil)
         presentViewController(activityViewController, animated: true, completion: nil)
         
-        // Add it to the memes array in the Application Delegate
-        let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.memes.append(meme)
+        
+        
     }
     
     //generate the meme

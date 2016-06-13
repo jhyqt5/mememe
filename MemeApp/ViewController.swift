@@ -55,6 +55,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:attributes)
         bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes:attributes)
         memeView.image = nil
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     //Generate, save, and share meme

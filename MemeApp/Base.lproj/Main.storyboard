@@ -131,7 +131,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="memeTable" destination="Csb-eB-BSw" id="iKT-el-v8h"/>
-                        <segue destination="Ods-TJ-cXg" kind="show" identifier="showTableDetail" action="showDetailViewController:sender:" id="THi-Pd-rVy"/>
+                        <segue destination="Ods-TJ-cXg" kind="show" identifier="showTableDetail" id="THi-Pd-rVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22A-wb-PTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
